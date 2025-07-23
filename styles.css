@@ -1,0 +1,466 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "VT323", monospace;
+}
+
+:root {
+  --yellow-50: #FFFBF0;
+  --yellow-100: #FFECB2;
+  --yellow-200: #FFD966;
+  --yellow-300: #FFE699;
+  --yellow-350: #FFBF1A;
+  --yellow-400: #FFB800;
+
+  --brown-light: #65615E;
+  --brown-dark: #231F20;
+}
+
+main {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 20rem 1.5rem 20rem;
+  row-gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+header {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.game-border-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  padding: 1rem;
+  background-color: var(--yellow-50);
+}
+
+.game-area {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 3px solid var(--brown-dark);
+  border-radius: 0.75rem;
+  filter: url(#wiggle-border);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.game-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.content {
+  width: fit-content;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-text p {
+  color: var(--brown-dark);
+  text-align: center;
+  font-size: 4rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 3rem; 
+}
+
+.playbtn {
+  display: flex;
+  width: 12.8125rem;
+  height: 3rem;
+  padding: 1rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 0.5rem;
+  border: 2px solid var(--brown-dark);
+  background: var(--yellow-400);
+  box-shadow: 4px 4px 0px 0px var(--brown-dark);
+  font-size: 1.75rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5rem;
+  color: var(--brown-dark);
+  cursor: pointer;
+}
+
+.playbtn:hover {
+  box-shadow: -4px -4px 0px 0px var(--brown-dark);
+  background-color: var(--yellow-350);
+}
+
+.computer-hand {
+  position: absolute;
+  left: -1rem;
+}
+
+.player-hand {
+  position: absolute;
+  right: -1rem;
+}
+
+/* Game Interface */
+
+.game-interface {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: none;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 1;
+}
+
+.players {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#computer {
+  width: fit-content;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 0.5rem;
+}
+
+#user {
+  width: fit-content;
+  height: auto;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  column-gap: 0.5rem;
+}
+
+.avatar {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 99px;
+}
+
+.avatar img {
+  width: 3rem;
+  height: 3rem;
+}
+
+.player-details {
+  width: fit-content;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  row-gap: 0rem;
+}
+
+#user-details {
+  align-items: flex-end;
+}
+
+.player-name {
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5rem;
+  text-align: start;
+  color: var(--brown-dark);
+}
+
+.player-score {
+  font-family: sans-serif;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5rem;
+  text-align: start;
+  color: var(--brown-light);
+}
+
+.timer {
+  width: fit-content;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0rem;
+}
+
+.time {
+  font-size: 6.5rem;
+  font-weight: 400;
+  font-style: normal;
+  text-align: center;
+  line-height: 6.25rem;
+  color: var(--brown-dark);
+}
+
+.timer-label {
+  font-family: sans-serif;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5rem;
+  text-align: center;
+  color: var(--brown-light);
+}
+
+.options {
+  width: fit-content;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: center;
+  column-gap: 2.5rem;
+}
+
+.option {
+  width: 6rem;
+  height: 6rem;
+  display: flex;
+  flex-shrink: 0;
+  border-radius: 62rem;
+  background-color: var(--yellow-100);
+  position: relative;
+  cursor: pointer;
+  border: none;
+}
+
+.computer-hand-img {
+  display: none;
+  position: absolute;
+  left: -1rem;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+.player-hand-img {
+  display: none;
+  position: absolute;
+  right: -1rem;
+  top: 50%;
+  transform: translate(0, -50%);
+}
+
+.rock-option, .paper-option, .scissors-option {
+  position: absolute;
+  bottom: 1rem;
+  left: 1.25rem;
+}
+
+/* Result Modal */
+.result-modal {
+  position: absolute;
+  width: 24rem;
+  height: auto;
+  display: none;
+  padding: 2rem 1.5rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 1rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--yellow-100);
+  box-shadow: 4px 4px 0px 0px var(--brown-dark);
+  border: 2px solid var(--brown-dark);
+  border-radius: 0.5rem;
+  z-index: 1;
+}
+
+.result-text {
+  font-family: "VT323";
+  font-size: 3.5rem;
+  font-style: normal;
+  font-weight: 400;
+  text-align: center;
+}
+
+.play-again {
+  display: flex;
+  width: 100%;
+  height: 3rem;
+  padding: 1rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 0.5rem;
+  border: 2px solid var(--brown-dark);
+  background: var(--yellow-400);
+  box-shadow: 4px 4px 0px 0px var(--brown-dark);
+  font-size: 1.75rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.5rem;
+  color: var(--brown-dark);
+  cursor: pointer;
+}
+
+.play-again:hover {
+  box-shadow: -4px -4px 0px 0px var(--brown-dark);
+  background-color: var(--yellow-350);
+}
+
+@media screen and (max-width: 80rem) {
+  main {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 2rem 1.5rem 2rem;
+    row-gap: 1rem;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 42.5rem) {
+  main {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem 1rem 1.25rem 1rem;
+    row-gap: 1rem;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .game-border-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    padding: 0rem;
+    background-color: var(--yellow-50);
+  }
+
+  .game-content {
+    overflow: hidden;
+  }
+
+  .computer-hand {
+    position: absolute;
+    top: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%) rotate(90deg);
+  }
+  
+  .player-hand {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%) rotate(90deg);
+  }
+
+  .options {
+    width: fit-content;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: center;
+    column-gap: 2rem;
+  }
+
+  .option {
+    width: 5rem;
+    height: 5rem;
+    display: flex;
+    flex-shrink: 0;
+    border-radius: 62rem;
+    background-color: var(--yellow-100);
+    position: relative;
+    cursor: pointer;
+    border: none;
+  }
+
+  .rock-option, .paper-option, .scissors-option {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+  }
+
+  .computer-hand-img {
+    display: none;
+    position: absolute;
+    left: -9rem;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+  
+  .player-hand-img {
+    display: none;
+    position: absolute;
+    right: -9rem;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+
+  .result-modal {
+    position: absolute;
+    width: 20rem;
+    height: auto;
+    display: none;
+    padding: 2rem 1.5rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 1rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--yellow-100);
+    box-shadow: 4px 4px 0px 0px var(--brown-dark);
+    border: 2px solid var(--brown-dark);
+    border-radius: 0.5rem;
+    z-index: 1;
+  }
+
+  .result-text {
+    font-family: "VT323";
+    font-size: 2.5rem;
+    font-style: normal;
+    font-weight: 400;
+    text-align: center;
+  }
+}
