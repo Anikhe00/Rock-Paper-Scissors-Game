@@ -46,7 +46,7 @@ A visually engaging and interactive **Rock Paper Scissors** game built with HTML
 Rock-Paper-Scissors/
 ├── index.html
 ├── styles.css
-├── script.js
+├── index.js
 ├── assets/
 │   ├── player/
 │   │   ├── rock.png
